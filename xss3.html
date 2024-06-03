@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webview XSS</title>
+    <title>TelephonyManager System Details</title>
 </head>
 <body>
-    
+    <h1>TelephonyManager System Details</h1>
+    <button onclick="showSystemDetails()">Show System Details</button>
+
+    <script>
+        function showSystemDetails() {
+            if (window.TelephonyManager && typeof window.TelephonyManager.getSystemDetail === 'function') {
+                try {
+                    var details = window.TelephonyManager.getSystemDetail();
+                    alert(details);
+                } catch (e) {
+                    alert('Error retrieving system details: ' + e.message);
+                }
+            } else {
+                alert('TelephonyManager API is not available.');
+            }
+        }
+    </script>
 </body>
-<script>
-
-    alert(window.TelephonyManager.getSystemDetail())
-
-</script>
 </html>
